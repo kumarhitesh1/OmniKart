@@ -46,7 +46,9 @@ async function sendOtp(email, subject, otp) {
 </body>
 </html>`;
   const transport = createTransport({
-    service: "gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
     auth: {
       user: process.env.Gmail,
       pass: process.env.Password,
