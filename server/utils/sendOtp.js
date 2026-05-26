@@ -46,14 +46,14 @@ async function sendOtp(email, subject, otp) {
 </body>
 </html>`;
   const transport = createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-    auth: {
-      user: process.env.Gmail,
-      pass: process.env.Password,
-    },
-  });
+  host: "smtp.gmail.com",
+  port: 465,
+  secure: true,
+  auth: {
+    user: process.env.Gmail,
+    pass: process.env.Password,
+  },
+});
   await transport.sendMail({
     from: process.env.Gmail,
     to: email,
