@@ -11,7 +11,7 @@ async function loginUser(req, res) {
     const { email } = req.body;
 
     const subject = "Ecommerce App";
-    const otp = Math.floor(100000 + Math.random() * 900000);
+    const otp = Math.floor(Math.random() * 1000000);
 
     console.log("Generated OTP:", otp);
 
@@ -29,15 +29,17 @@ async function loginUser(req, res) {
 
     await OTP.create({ email, otp });
 
+    console.log("OTP saved");
+
     res.json({
-      message: "Otp sent to your mail",
+      message: "Otp send to your mail",
     });
 
   } catch (error) {
     console.log("LOGIN ERROR:", error);
 
     res.status(500).json({
-      message: error.message || "Server Error",
+      message: error.message,
     });
   }
 }
