@@ -4,22 +4,42 @@ const tryCatch=require("../utils/tryCatch");
 const {sendOtp}=require("../utils/sendOtp");
 const jwt=require("jsonwebtoken");
 
-async function loginUser(req,res){
-    const {email}=req.body;
-    const subject="Ecommerce App";
-    const otp=Math.floor(Math.random()*1000000);
+async function loginUser(req, res) {
+  try {
+    console.log("Login route hit");
 
-    const prevOtp=await OTP.findOne({
-        email,
-    });
-    if(prevOtp){
-        await prevOtp.deleteOne();
+    const { email } = req.body;
+
+    const subject = "Ecommerce App";
+    const otp = Math.floor(100000 + Math.random() * 900000);
+
+    console.log("Generated OTP:", otp);
+
+    const prevOtp = await OTP.findOne({ email });
+
+    if (prevOtp) {
+      await prevOtp.deleteOne();
     }
+
+    console.log("Sending email...");
+
     await sendOtp(email, subject, otp);
-    await OTP.create({email,otp});
+
+    console.log("Email sent");
+
+    await OTP.create({ email, otp });
+
     res.json({
-        message:"Otp send to your mail"
-    })
+      message: "Otp sent to your mail",
+    });
+
+  } catch (error) {
+    console.log("LOGIN ERROR:", error);
+
+    res.status(500).json({
+      message: error.message || "Server Error",
+    });
+  }
 }
 
 async function verifyUser(req,res){
