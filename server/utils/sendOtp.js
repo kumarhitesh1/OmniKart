@@ -1,66 +1,31 @@
-const {createTransport}=require("nodemailer");
-async function sendOtp(email,subject,otp){
-    const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OTP Verification</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        h1 {
-            color: red;
-        }
-        p {
-            margin-bottom: 20px;
-            color: #666;
-        }
-        .otp {
-            font-size: 36px;
-            color: #7b68ee;
-            margin-bottom: 30px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>OTP Verification</h1>
-        <p>Hello ${email}, your One-Time Password for account verification is:</p>
-        <p class="otp">${otp}</p>
-    </div>
-</body>
-</html>`;
-    const transport=createTransport({
-        host:"smtp.gmail.com",
-        port:465,
-        secure: true,
-        auth:{
-            user:process.env.Gmail,
-            pass:process.env.Password
-        }
-    });
-    await transport.sendMail({
-        from:process.env.Gmail,
-        to:email,
-        subject,
-        html,
-    });
-    console.log("OTP Email Sent Successfully");
+const { createTransport } = require("nodemailer");
 
+async function sendOtp(email, subject, otp) {
+  const transport = createTransport({
+    host: "smtp.resend.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "resend",
+      pass: process.env.RESEND_API_KEY,
+    },
+  });
+
+  await transport.sendMail({
+    from: "OmniKart <onboarding@resend.dev>",
+    to: email,
+    subject,
+    html: `
+      <div style="font-family: Arial, sans-serif; padding: 20px; text-align: center;">
+        <h1 style="color: #1b2a6b;">OmniKart</h1>
+        <h2>OTP Verification</h2>
+        <p>Hello ${email}, your One-Time Password is:</p>
+        <p style="font-size: 36px; color: #4f7ef7; font-weight: bold;">${otp}</p>
+        <p>This OTP expires in 2 minutes.</p>
+      </div>
+    `,
+  });
+  console.log("OTP Email Sent Successfully");
 }
-module.exports={sendOtp};
+
+module.exports = { sendOtp };
