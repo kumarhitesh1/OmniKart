@@ -1,15 +1,7 @@
-const { createTransport } = require("nodemailer");
+const { Resend } = require("resend");
 
 async function sendOrderConfirmation({ email, subject, orderId, products, totalAmount }) {
-  const transport = createTransport({
-    host: "smtp.resend.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: "resend",
-      pass: process.env.RESEND_API_KEY,
-    },
-  });
+  const resend = new Resend(process.env.RESEND_API_KEY);
 
   const productsHtml = products.map((product) => `
     <tr>
@@ -19,8 +11,8 @@ async function sendOrderConfirmation({ email, subject, orderId, products, totalA
     </tr>
   `).join("");
 
-  await transport.sendMail({
-    from: "OmniKart <onboarding@resend.dev>",
+  await resend.emails.send({
+    from: "onboarding@resend.dev",
     to: email,
     subject,
     html: `
