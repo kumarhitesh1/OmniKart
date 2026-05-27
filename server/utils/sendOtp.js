@@ -1,18 +1,10 @@
-const { createTransport } = require("nodemailer");
+const { Resend } = require("resend");
 
 async function sendOtp(email, subject, otp) {
-  const transport = createTransport({
-    host: "smtp.resend.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: "resend",
-      pass: process.env.RESEND_API_KEY,
-    },
-  });
-
-  await transport.sendMail({
-    from: "OmniKart <onboarding@resend.dev>",
+  const resend = new Resend(process.env.RESEND_API_KEY);
+  
+  await resend.emails.send({
+    from: "onboarding@resend.dev",
     to: email,
     subject,
     html: `
