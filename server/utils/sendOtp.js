@@ -1,13 +1,21 @@
-const { Resend } = require("resend");
+const SibApiV3Sdk = require("sib-api-v3-sdk");
+
+const defaultClient = SibApiV3Sdk.ApiClient.instance;
+
+defaultClient.authentications["api-key"].apiKey =
+  process.env.BREVO_API_KEY;
+
+const apiInstance = new SibApiV3Sdk.TransactionalEmailsApi();
 
 async function sendOtp(email, subject, otp) {
-  const resend = new Resend(process.env.RESEND_API_KEY);
-  
-  await resend.emails.send({
-    from: "onboarding@resend.dev",
-    to: email,
+  await apiInstance.sendTransacEmail({
+    sender: {
+      name: "OmniKart",
+      email: process.env.BREVO_SENDER_EMAIL,
+    },
+    to: [{ email }],
     subject,
-    html: `
+    htmlContent: `
       <div style="font-family: Arial, sans-serif; padding: 20px; text-align: center;">
         <h1 style="color: #1b2a6b;">OmniKart</h1>
         <h2>OTP Verification</h2>
@@ -17,6 +25,7 @@ async function sendOtp(email, subject, otp) {
       </div>
     `,
   });
+
   console.log("OTP Email Sent Successfully");
 }
 
