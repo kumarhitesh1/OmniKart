@@ -27,7 +27,7 @@ A full-stack ecommerce web application built with the MERN stack. OmniKart allow
 | MongoDB + Mongoose | Database |
 | JWT | Authentication |
 | Cloudinary | Image Storage |
-| Resend | Email Service (OTP + Order Confirmation) |
+| Brevo | Email Service (OTP + Order Confirmation) |
 | Multer | File Uploads |
 
 ## ✨ Features
@@ -138,7 +138,7 @@ OmniKart/
 - Node.js v18+
 - MongoDB Atlas account
 - Cloudinary account
-- Resend account
+- Brevo account
 
 ### Backend Setup
 
@@ -165,7 +165,8 @@ JWT_SEC=your_jwt_secret_key
 CLOUD_NAME=your_cloudinary_cloud_name
 CLOUD_API_KEY=your_cloudinary_api_key
 CLOUD_API_SECRET=your_cloudinary_api_secret
-RESEND_API_KEY=your_resend_api_key
+BREVO_API_KEY=your_brevo_api_key
+BREVO_SENDER_EMAIL=your_verified_sender_email
 CLIENT_URL=http://localhost:5173
 ```
 
@@ -250,7 +251,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 - **Backend** deployed on [Render](https://render.com)
 - **Database** hosted on [MongoDB Atlas](https://www.mongodb.com/atlas)
 - **Images** stored on [Cloudinary](https://cloudinary.com)
-- **Emails** sent via [Resend](https://resend.com)
+- **Emails** sent via [Brevo](https://brevo.com)
 
 ## 👨‍💻 Author
 
