@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import ChatAssistant from "./components/ChatAssistant";
 
 import Login from "./pages/Login";
 import Verify from "./pages/Verify";
@@ -70,6 +71,7 @@ const App = () => {
       </Routes>
 
       <Footer />
+      <ChatAssistant />
     </BrowserRouter>
   );
 };

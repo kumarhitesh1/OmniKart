@@ -29,12 +29,14 @@ const productRoutes=require("./routes/product");
 const cartRoutes=require("./routes/cart");
 const addressRoutes=require("./routes/address");
 const orderRoutes=require("./routes/order");
+const chatRoutes=require("./routes/chat")
 
 app.use("/api",userRoutes);
 app.use("/api",productRoutes);
 app.use("/api",cartRoutes);
 app.use("/api",addressRoutes);
 app.use("/api",orderRoutes);
+app.use("/api",chatRoutes);
 
 app.listen(PORT,()=>{
     console.log(`Server started at http://localhost:${PORT}`);

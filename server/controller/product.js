@@ -1,6 +1,5 @@
 const bufferGenerator = require("../utils/bufferGenerator");
 const tryCatch = require("../utils/tryCatch");
-const { getAIRecommendedProducts } = require("../utils/aiRecommendedProduct");
 const Product = require("../models/product");
 const cloudinary = require("cloudinary");
 
