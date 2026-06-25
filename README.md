@@ -29,6 +29,7 @@ A full-stack ecommerce web application built with the MERN stack. OmniKart allow
 | Cloudinary | Image Storage |
 | Brevo | Email Service (OTP + Order Confirmation) |
 | Multer | File Uploads |
+| Groq AI | AI Chat Assistant |
 
 ## ✨ Features
 
@@ -41,6 +42,7 @@ A full-stack ecommerce web application built with the MERN stack. OmniKart allow
 - 💳 Cash on Delivery (COD) payment
 - 📋 Order history and order detail page
 - 📧 Order confirmation email
+- 🤖 AI chat assistant — product recommendations, order tracking, store FAQ
 
 ### Admin Features
 - 📦 Product management — add, edit, update stock
@@ -70,6 +72,7 @@ OmniKart/
 │   │   │   │   ├── AdminOrders.jsx
 │   │   │   │   ├── AdminProducts.jsx
 │   │   │   │   └── AdminStats.jsx
+│   │   │   ├── ChatAssistant.jsx
 │   │   │   ├── Footer.jsx
 │   │   │   ├── Navbar.jsx
 │   │   │   ├── ProductCard.jsx
@@ -103,6 +106,7 @@ OmniKart/
     ├── controller/
     │   ├── address.js
     │   ├── cart.js
+    │   ├── chat.js
     │   ├── order.js
     │   ├── product.js
     │   └── user.js
@@ -119,6 +123,7 @@ OmniKart/
     ├── routes/
     │   ├── address.js
     │   ├── cart.js
+    │   ├── chat.js
     │   ├── order.js
     │   ├── product.js
     │   └── user.js
@@ -139,6 +144,7 @@ OmniKart/
 - MongoDB Atlas account
 - Cloudinary account
 - Brevo account
+- Groq account
 
 ### Backend Setup
 
@@ -167,6 +173,7 @@ CLOUD_API_KEY=your_cloudinary_api_key
 CLOUD_API_SECRET=your_cloudinary_api_secret
 BREVO_API_KEY=your_brevo_api_key
 BREVO_SENDER_EMAIL=your_verified_sender_email
+GROQ_API_KEY=your_groq_api_key
 CLIENT_URL=http://localhost:5173
 ```
 
@@ -245,6 +252,22 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 | GET | `/api/address/:id` | Get single address |
 | DELETE | `/api/address/:id` | Delete address |
 
+### Chat
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/chat` | Send message to AI assistant |
+
+## 🤖 AI Chat Assistant
+
+OmniKart includes a floating AI chat assistant powered by **Groq (LLaMA 3.3 70B)**:
+
+- Quick action buttons on start — Browse Products, My Orders, My Cart
+- Product recommendations based on budget, category, or preferences using real catalog data
+- Order tracking — shows real order status for logged-in users
+- Store FAQ — answers questions about login, payment, and how to order
+- New conversation button to reset chat
+- Conversation resets automatically on logout
+
 ## 🚢 Deployment
 
 - **Frontend** deployed on [Vercel](https://vercel.com)
@@ -252,6 +275,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 - **Database** hosted on [MongoDB Atlas](https://www.mongodb.com/atlas)
 - **Images** stored on [Cloudinary](https://cloudinary.com)
 - **Emails** sent via [Brevo](https://brevo.com)
+- **AI** powered by [Groq](https://groq.com)
 
 ## 👨‍💻 Author
 
