@@ -4,7 +4,7 @@ A full-stack ecommerce web application built with the MERN stack. OmniKart allow
 
 ## 🔗 Live Demo
 
-- **Frontend:** [https://omnikart-nine.vercel.app](https://omnikart-nine.vercel.app)
+- **Live:** [https://omnikart-nine.vercel.app](https://omnikart-nine.vercel.app)
 - **Github:** [https://github.com/kumarhitesh1/OmniKart.git](https://github.com/kumarhitesh1/OmniKart.git)
 
 ## ⚙️ Tech Stack
